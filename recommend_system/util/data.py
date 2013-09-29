@@ -18,10 +18,7 @@ class Data:
     def stats(self):
         raise NotImplementedError
 
-class NetflixData(Data):
-    def __init__(self, file_name, sep):
-        super(NetflixData, self).__init__(file_name, sep)
-
+class NetflixTrainData(Data):
     def loads():
         """
         read file contents, return RatingMatrix
@@ -31,13 +28,30 @@ class NetflixData(Data):
     def stats(self):
         pass
 
-class MovielensData(Data):
-    def __init__(self, file_name, sep):
-        super(MovielensData, self).__init__(file_name, sep)
+class NetflixTestData(Data):
+    def loads():
+        """
+        read file contents, return a list of (uid, iid, rating)
+        """
+        pass
 
+    def stats(self):
+        pass
+
+class MovielensTrainData(Data):
     def loads():
         """
         read file contents, return RatingMatrix
+        """
+        pass
+
+    def stats(self):
+        pass
+
+class MovielensTestData(Data):
+    def loads():
+        """
+        read file contents, return a list of (uid, iid, rating)
         """
         pass
 
