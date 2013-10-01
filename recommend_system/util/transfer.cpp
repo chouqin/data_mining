@@ -77,44 +77,8 @@ void loadRating(vector <vector <tuple> > &ratings) {
 }
 
 int main() {
-    //vector<string> res;
-    //string s = "scott>=tiger>=mushroom";
-    //string delimiter = ">=";
-    //splitstr(s, delimiter, res);
-
-    //cout << "split result:" << endl;
-    //for(std::vector<string>::iterator it = res.begin(); it != res.end(); ++it) {
-        //cout << *it << endl;
-    //}
-    //return 0;
-
     vector <vector <tuple> > ratings(USER_NUM);
-
-    // init each tuple
-    //vector <vector <tuple> > ratings;
-    //for (int i = 0; i < USER_NUM; ++i) {
-        //vector<tuple> rating;
-        //ratings.push_back(rating);
-    //}
-
-    //tuple tu;
-    //tu.iid = 1;
-    //tu.rating = (char) 3;
-
-    //ratings[0].push_back(tu);
-
     loadRating(ratings);
-
-    //for (int i = 0; i < ratings.size(); ++i) {
-        //if (i == 2 || i == 1) {
-            //cout << "user " << i << ": ";
-            //for (vector<tuple>::iterator it = ratings[i].begin(); it != ratings[i].end(); ++it) {
-                //cout << "(" << it->iid << ", " << (int)it->rating << ")" << ", ";
-            //}
-            //cout << endl;
-        //}
-    //}
-
     return 0;
 }
 
