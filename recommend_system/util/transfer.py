@@ -14,12 +14,13 @@ transfer the origin netflix into three files:
 import json
 import pickle
 from utils import traverse_directory
-from matrix import RatingMatrix
+#from matrix import RatingMatrix
+from scipy.sparse import csc_matrix
 
 ALL_USR_NUM = 480189
 ALL_ITEM_NUM = 17770
 
-DATASET_DIR = '/home/chouqin/Desktop/download'
+DATASET_DIR = '/home/chouqin/Desktop/Recommender/download'
 
 def get_contents(line):
     """
@@ -37,9 +38,11 @@ def get_contents(line):
 def get_user_map():
     user_map = {}
     index = 0
-    rm = RatingMatrix(ALL_USR_NUM, ALL_ITEM_NUM)
+    #rm = RatingMatrix(ALL_USR_NUM, ALL_ITEM_NUM)
+    rm = csc_matrix((ALL_USR_NUM, ALL_ITEM_NUM), dtype=int8)
 
     cur_item_id = 0
+    cur_col = []
     count = 0
     for f in traverse_directory(DATASET_DIR + '/training_set'):
         with open(f, 'r') as fi:
@@ -56,13 +59,20 @@ def get_user_map():
                         index += 1
 
                     # set rating
-                    rm.add_user_rating(user_map[user_id], cur_item_id, rating)
+                    #rm.add_user_rating(user_map[user_id], cur_item_id, rating)
+                    #rm[user_map[user_id], cur_item_id] = rating
+                    cur_col.append(
                     count += 1
                     if count % 100000 == 0:
                         print count
                 else:
+                    if len(cur_col) > 0:
+                        rm[:, cur_item_id] = cur_col
                     cur_item_id = int(item_id) - 1
+                    cur_col = []
 
+    print count
+    exit(0)
     return user_map, rm
 
 
